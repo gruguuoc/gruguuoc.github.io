@@ -25,8 +25,17 @@ let currentToken = new Token();
 https://api.instagram.com/oauth/authorize?client_id=395272289839582&redirect_uri=https://gruguuoc.github.io/&scope=user_profile,user_media&response_type=code
 
 -- Obtención del token--
-curl -X POST https://api.instagram.com/oauth/access_token  -F client_id=395272289839582  -F client_secret=5e184b095eac044f56316f1d5fb216fd  -F grant_type=authorization_code  -F redirect_uri=https://gruguuoc.github.io/  -F code=AQDq0lDYzOiitaGfPyt7VdMPwf_S4joE_M2Yx9oEKDfT6pLd7pkqCxz17aKNPzm7luWjTO6Cudh47pMvhh_dfb3FLLt5kst3d-6L4Xigq6s4-L-MOj72IAEs_Z0GXJEbqziyPaEDOCCdgA5mMg9WuCg2zn-75vLiNeh6EKgJD1IOdXatYLLfceHDUdB1gDbu7g7BmMcJTa-yjzzBv5N-Ij6qhqAK2oPQqUOj5_YN1scItA
+curl -X POST https://api.instagram.com/oauth/access_token  -F client_id=395272289839582  -F client_secret=5e184b095eac044f56316f1d5fb216fd  -F grant_type=authorization_code  -F redirect_uri=https://gruguuoc.github.io/  -F code=AQAPQy-mNOxrWYTqlfS3uPHb4bBZgNTwMqLeZqEObmeR6Zgc_Fjir46GkDq9DFSYk0NVV_HBh5FZMBbB8SCD1-VHAxuw4Wzmj1I7UXkfjDWVJtEHGy1Jz5gmpy8bZ1DGBogx6IxAB4wk5zuZR6BhVUWtZt8e0vpfzOOUylK53SFrb03Bgbzta0hAimGNv_mYBtHFC5heprarbhpisqvUFLp0lIMxts7Ngu8BuMqi7pfgIQ
 
 -- Query básica--
-curl -X GET "https://graph.instagram.com/8008899302531819?fields=username&access_token=IGQWRNQ0k4cllnTE9GT25qWDh3djc0bUR4a2ZADNF9KUDk5RE5rNGEyT21GRHVOcjA5SDR2YkhPMjhmeEhCUkxGMWZA3enBSMWJIWF9BWHREVEd3Tm5Bb3VTUDlCS3ZA4ZATFNZAlFuczZAIdzg4RU5yTDhUSzEzWjRFNmc5UURKdmNOZAnNoNlZAWOVEZD"
- */
+curl -X GET "https://graph.instagram.com/8008899302531819?fields=username,id&access_token=IGQWROSXk4eU9ndFBGbEo5dFNjclN2V0ZATZAXJIbDNzVmFZAV0VGWkxqdFdhMV9FaFNHWWhDaTlPbjJNcmxKeFRSVmx5dlMybnNETlVWZAHRxb3VjUG5WaTlCZA2ZADSUdzZAEVrZATBObmwwWFlRMG9SZAHRQOGVfY1hoTTdwcldfZAnR5Qm91UQZDZD"
+ 
+-- Query Media
+curl -X GET "https://graph.instagram.com/8008899302531819/media?fields=id,caption,media_url&access_token=IGQWROSXk4eU9ndFBGbEo5dFNjclN2V0ZATZAXJIbDNzVmFZAV0VGWkxqdFdhMV9FaFNHWWhDaTlPbjJNcmxKeFRSVmx5dlMybnNETlVWZAHRxb3VjUG5WaTlCZA2ZADSUdzZAEVrZATBObmwwWFlRMG9SZAHRQOGVfY1hoTTdwcldfZAnR5Qm91UQZDZD"
+
+
+
+--Query Media Children
+
+curl -X GET "https://graph.instagram.com/18186947092208572/children?fields=media_url&access_token=IGQWROSXk4eU9ndFBGbEo5dFNjclN2V0ZATZAXJIbDNzVmFZAV0VGWkxqdFdhMV9FaFNHWWhDaTlPbjJNcmxKeFRSVmx5dlMybnNETlVWZAHRxb3VjUG5WaTlCZA2ZADSUdzZAEVrZATBObmwwWFlRMG9SZAHRQOGVfY1hoTTdwcldfZAnR5Qm91UQZDZD"
+*/
