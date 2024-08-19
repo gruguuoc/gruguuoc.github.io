@@ -23,5 +23,7 @@ class Login{
 
 
 }
+window.onload = (event) => {
+    let currentLogin = new Login();
+  };
 
-let currentLogin = new Login();
