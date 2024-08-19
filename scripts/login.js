@@ -6,13 +6,6 @@ class Login{
     initialize = function(params) {
         //Check login status
         this.CheckLoginStatus();
-
-        let loginBtn = document.getElementById("loginBtn");
-        loginBtn.onclick = this.login;
-    }
-
-    login = function(){
-       console.log("loginBtn"); 
     }
 
     CheckLoginStatus = function(){
