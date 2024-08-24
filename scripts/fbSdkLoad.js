@@ -7,7 +7,11 @@ window.fbAsyncInit = function() {
       version    : 'v20.0'
     });
       
-    FB.AppEvents.logPageView();   
+    FB.AppEvents.logPageView();
+    
+    FB.getLoginStatus(function(response) {
+      console.log(response);
+    });
       
   };
 
