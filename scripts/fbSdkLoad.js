@@ -1,7 +1,7 @@
 //Initializes the custom favebook APP
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1659688658203694',
+      appId      : '1162813908324155',
       cookie     : true,
       xfbml      : true,
       version    : 'v20.0'
