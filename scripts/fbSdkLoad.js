@@ -9,10 +9,10 @@ window.fbAsyncInit = function() {
       
     FB.AppEvents.logPageView();
     
+    //Get current status
     FB.getLoginStatus(function(response) {
       console.log(response);
-    });
-      
+    });      
   };
 
   (function(d, s, id){
@@ -22,3 +22,10 @@ window.fbAsyncInit = function() {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+//Call back that will be called when clicking facebook login button
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      console.log(response);
+    });
+  }
