@@ -19,6 +19,7 @@ class ConnectedUserController{
     }
 
     getUserPages = function(){
+        console.log("access token:" + this.accesToken);
         this.fbApi.api(`/me/accounts?access_token=${this.accesToken}`, function(response){
             console.log("Obtained Pages:");
             console.log(response);
