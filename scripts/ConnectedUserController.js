@@ -23,9 +23,9 @@ class ConnectedUserController{
         console.log(this.connectedUserData);
         console.log("authResponse:");
         console.log(this.connectedUserData.authResponse);
-        console.log("access token:" + this.accesToken);
+        console.log("access token:" + this.accessToken);
 
-        this.fbApi.api(`/me/accounts?access_token=${this.accesToken}`, function(response){
+        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, function(response){
             console.log("Obtained Pages:");
             console.log(response);
         });
