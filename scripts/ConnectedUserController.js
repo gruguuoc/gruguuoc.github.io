@@ -26,9 +26,10 @@ class ConnectedUserController{
      * @description Obtaining the user media objects to manage data.
      */
     getUserMediaObjects = function(){
+        const that = this;
         return new Promise(function(resolve, reject){
             //Getting the Facebook pages in order to obtain the related Instagram User
-            this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getPageId);
+            that.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getPageId);
             
             //Obtaining the instagram user account from page Id
             resolve();
@@ -46,9 +47,10 @@ class ConnectedUserController{
      * 
     */
     getInstagramBusinessAccount = function(){
+        const that = this;
         return new Promise(function(resolve, reject){
             //Getting the instagram User Id
-            this.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramBussinessAccountId);
+            that.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramBussinessAccountId);
                 
             //Obtaining the instagram user account from page Id
             resolve();
