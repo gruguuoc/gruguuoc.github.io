@@ -1,9 +1,3 @@
-//Obtaining user page ID
-function getUserPages(accesToken)
-{
-    //https://graph.facebook.com/v20.0/me/accounts?access_token={access-token}
-}
-
 class ConnectedUserController{
     /**
      * 
@@ -14,6 +8,7 @@ class ConnectedUserController{
     constructor(FB, connectedUserData){
         this.fbApi = FB,
         this.connectedUserData = connectedUserData
+        this.getUserAccessToken();
     }
 
     /**

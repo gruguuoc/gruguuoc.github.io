@@ -34,6 +34,7 @@ function LoadMainBoardIfConnected() {
       if(response.status === "connected")
       {
         const connectedUserController = new ConnectedUserController(FB, response);
+        connectedUserController.getUserPages();
       }
     });
   }
