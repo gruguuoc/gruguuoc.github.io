@@ -8,10 +8,14 @@ class ConnectedUserController{
     constructor(FB, connectedUserData){
         this.fbApi = FB,
         this.connectedUserData = connectedUserData
-        this.getUserAccessToken();
-        this.getUserMediaObjects();
+        this.getUserData();
     }
 
+    getUserData = function(){
+        this.getUserAccessToken();
+        this.getUserMediaObjects();
+        this.getInstagramBusinessAccount();
+    }
     /**
      * @description Obtaining the access token of the current connected user
      */
@@ -22,22 +26,27 @@ class ConnectedUserController{
     /**
      * @description Obtaining the user media objects to manage data.
      */
-    getUserMediaObjects = function(){
+    getUserMediaObjects = async function(){
         //Getting the Facebook pages in order to obtain the related Instagram User
-        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getInstagramUserInformation);
+        await this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getInstagramUserId);
     }
 
     /**
      * @description Callback: Obtaining the Instagram user Id associated to the facebook page
      */
-    getInstagramUserInformation = function(response){
+    getInstagramUserId = function(response){
         this.pageId = response.data[0].id;
-
-        //Getting the instagram User Id
-        this.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramMediaObjects);
     }
 
-    getInstagramMediaObjects = function(response){
+    /** 
+     * 
+    */
+    getInstagramBusinessAccount = async function(){
+        //Getting the instagram User Id
+       await this.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramBussinessAccountId);
+    }
+
+    getInstagramBussinessAccountId = function(response){
         console.log(response);
         this.instagramUserId = response.data[0].instagram_business_account.id;
     }
