@@ -9,7 +9,7 @@ class ConnectedUserController{
         this.fbApi = FB,
         this.connectedUserData = connectedUserData
         this.getUserAccessToken();
-        this.getUserPages();
+        this.getUserMediaObjects();
     }
 
     /**
@@ -20,18 +20,25 @@ class ConnectedUserController{
     }
 
     /**
-     * @description Obtaining the Facebook pages in order to obtain the related Instagram User
+     * @description Obtaining the user media objects to manage data.
      */
-    getUserPages = function(){
-        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getInstagramUserId);
+    getUserMediaObjects = function(){
+        //Getting the Facebook pages in order to obtain the related Instagram User
+        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getInstagramUserInformation);
     }
 
     /**
-     * @description Obtaining the Instagram user Id associated to the facebook page
+     * @description Callback: Obtaining the Instagram user Id associated to the facebook page
      */
-    getInstagramUserId = function(response){
+    getInstagramUserInformation = function(response){
+        this.pageId = response.data[0].id;
+
+        //Getting the instagram User Id
+        this.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramMediaObjects);
+    }
+
+    getInstagramMediaObjects = function(response){
         console.log(response);
-        this.instagramUserId = response.data[0].id;
-        console.log(this.instagramUserId);
+        this.instagramUserId = response.data[0].instagram_business_account.id;
     }
 }
