@@ -31,7 +31,7 @@ class ConnectedUserController{
      */
     getInstagramUserId = function(response){
         console.log(response);
-        this.instagramUserId = response.data[0].category_list.id;
+        this.instagramUserId = response.data[0].id;
         console.log(this.instagramUserId);
     }
 }
