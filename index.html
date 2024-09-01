@@ -8,11 +8,13 @@
 <body>
     <h1>Get startedd</h1>
 
+    <!-- Button that connect user to Facebook Platform-->
     <fb:login-button 
-        scope="instagram_basic,pages_show_list"
-        onlogin="checkLoginState();">
+        scope="instagram_basic,pages_show_list, business_management, read_insights"
+        onlogin="LoadMainBoardIfConnected();">
     </fb:login-button>
 </body>
+    <script src="scripts/apiController.js"></script>
     <script src="scripts/fbSdkLoad.js"></script>
     <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </html>
