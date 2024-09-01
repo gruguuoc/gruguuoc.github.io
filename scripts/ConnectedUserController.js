@@ -9,6 +9,7 @@ class ConnectedUserController{
         this.fbApi = FB,
         this.connectedUserData = connectedUserData
         this.getUserAccessToken();
+        this.getUserPages();
     }
 
     /**
@@ -18,16 +19,19 @@ class ConnectedUserController{
         this.accessToken = this.connectedUserData.authResponse.accessToken;
     }
 
+    /**
+     * @description Obtaining the Facebook pages in order to obtain the related Instagram User
+     */
     getUserPages = function(){
-        console.log("data:");
-        console.log(this.connectedUserData);
-        console.log("authResponse:");
-        console.log(this.connectedUserData.authResponse);
-        console.log("access token:" + this.accessToken);
+        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getInstagramUserId);
+    }
 
-        this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, function(response){
-            console.log("Obtained Pages:");
-            console.log(response);
-        });
+    /**
+     * @description Obtaining the Instagram user Id associated to the facebook page
+     */
+    getInstagramUserId = function(response){
+        console.log(response);
+        this.instagramUserId = response.data[0].category_list.id;
+        console.log(this.instagramUserId);
     }
 }
