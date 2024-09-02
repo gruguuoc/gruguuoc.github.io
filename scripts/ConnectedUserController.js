@@ -14,9 +14,11 @@ class ConnectedUserController{
     getUserData = function(){
         //The user access token is obtained
         this.getUserAccessToken();
-        this.getUserAccounts().then(this.getInstagramBusinessAccount(this).then(response => {
+        
+        Promise.all([getUserAccounts(), getInstagramBusinessAccount()]).then(response =>{
+            console.log("Respuesta:");
             console.log(response);
-        }));  
+        })
     }
     /**
      * @description Obtaining the access token of the current connected user
@@ -48,17 +50,14 @@ class ConnectedUserController{
     /** 
      * 
     */
-    getInstagramBusinessAccount = function(context){
-        let that = context;
-        return function(){
-            return new Promise((resolve, reject) => {
-                //Getting the instagram User Id
-                that.fbApi.api(`/${that.pageId}?fields=instagram_business_account`, that.getInstagramBussinessAccountId);
-                    
-                //Obtaining the instagram user account from page Id
-                resolve();
-            });
-        }
+    getInstagramBusinessAccount = function(){
+        return new Promise((resolve, reject) => {
+            //Getting the instagram User Id
+            that.fbApi.api(`/${that.pageId}?fields=instagram_business_account`, that.getInstagramBussinessAccountId);
+                
+            //Obtaining the instagram user account from page Id
+            resolve();
+        });
     }
 
     getInstagramMediaObjects = function(response){
