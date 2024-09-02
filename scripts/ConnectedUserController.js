@@ -26,7 +26,7 @@ class ConnectedUserController{
      * @description Obtaining the user media objects to manage data.
      */
     getUserMediaObjects = function(){
-        return new Promise(function(resolve, reject){
+        return new Promise((resolve, reject) => {
             //Getting the Facebook pages in order to obtain the related Instagram User
             this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getPageId);
             
@@ -46,7 +46,7 @@ class ConnectedUserController{
      * 
     */
     getInstagramBusinessAccount = function(){
-        return new Promise(function(resolve, reject){
+        return new Promise((resolve, reject) => {
             //Getting the instagram User Id
             this.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramBussinessAccountId);
                 
