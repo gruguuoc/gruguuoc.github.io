@@ -15,9 +15,8 @@ class ConnectedUserController{
         //The user access token is obtained
         this.getUserAccessToken();
         
-        Promise.all([getUserAccounts(), getInstagramBusinessAccount()]).then(response =>{
-            console.log("Respuesta:");
-            console.log(response);
+        this.getUserAccounts().then(this.getInstagramBusinessAccount).then(function(instagramBusinessAccountId){
+            console.log("instagramBusinessAccountId:" + instagramBusinessAccountId);
         })
     }
     /**
@@ -33,35 +32,21 @@ class ConnectedUserController{
     getUserAccounts = function(){
         return new Promise((resolve, reject) => {
             //Getting the Facebook pages in order to obtain the related Instagram User
-            this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getPageId);
-            
-            //Obtaining the instagram user account from page Id
-            resolve();
+            this.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, response => {
+                resolve(response.data[0].id);
+            });
         });
-    }
-
-    /**
-     * @description Callback: Obtaining the Instagram user Id associated to the facebook page
-     */
-    getPageId = function(response){
-        this.pageId = response.data[0].id;
     }
 
     /** 
      * 
     */
-    getInstagramBusinessAccount = function(){
+    getInstagramBusinessAccount = function(pageId){
         return new Promise((resolve, reject) => {
             //Getting the instagram User Id
-            that.fbApi.api(`/${that.pageId}?fields=instagram_business_account`, that.getInstagramBussinessAccountId);
-                
-            //Obtaining the instagram user account from page Id
-            resolve();
+            this.fbApi.api(`/${pageId}?fields=instagram_business_account`, response => {
+                resolve(response.data[0].instagram_business_account.id)
+            });
         });
-    }
-
-    getInstagramMediaObjects = function(response){
-        console.log(response);
-        this.instagramUserId = response.data[0].instagram_business_account.id;
     }
 }
