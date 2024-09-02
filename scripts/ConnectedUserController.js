@@ -15,6 +15,7 @@ class ConnectedUserController{
         this.getUserAccessToken();
         this.getUserMediaObjects().then(this.getInstagramBusinessAccount);  
     }
+    
     /**
      * @description Obtaining the access token of the current connected user
      */
@@ -29,7 +30,7 @@ class ConnectedUserController{
         const that = this;
         return new Promise(function(resolve, reject){
             //Getting the Facebook pages in order to obtain the related Instagram User
-            that.fbApi.api(`/me/accounts?access_token=${this.accessToken}`, this.getPageId);
+            that.fbApi.api(`/me/accounts?access_token=${that.accessToken}`, that.getPageId);
             
             //Obtaining the instagram user account from page Id
             resolve();
@@ -50,7 +51,7 @@ class ConnectedUserController{
         const that = this;
         return new Promise(function(resolve, reject){
             //Getting the instagram User Id
-            that.fbApi.api(`/${this.pageId}?fields=instagram_business_account`, this.getInstagramBussinessAccountId);
+            that.fbApi.api(`/${that.pageId}?fields=instagram_business_account`, that.getInstagramBussinessAccountId);
                 
             //Obtaining the instagram user account from page Id
             resolve();
