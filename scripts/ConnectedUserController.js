@@ -15,10 +15,12 @@ class ConnectedUserController{
         //The user access token is obtained
         this.getUserAccessToken();
         
-        this.getUserAccounts().then(this.getInstagramBusinessAccount).then(function(instagramBusinessAccountId){
-            console.log("instagramBusinessAccountId:" + instagramBusinessAccountId);
-        })
+        this.getUserAccounts().then(this.getInstagramBusinessAccount()).then(this.getInstagramMedia).then(function(data){
+            console.log("data");
+            console.log(data);
+        });
     }
+    
     /**
      * @description Obtaining the access token of the current connected user
      */
@@ -27,7 +29,7 @@ class ConnectedUserController{
     }
 
     /**
-     * @description Obtaining the user media objects to manage data.
+     * @description Obtaining the user facebook pages accounts.
      */
     getUserAccounts = function(){
         return new Promise((resolve, reject) => {
@@ -39,14 +41,34 @@ class ConnectedUserController{
     }
 
     /** 
-     * 
+     * @description Obtaining the instagram business Id
     */
-    getInstagramBusinessAccount = function(pageId){
-        return new Promise((resolve, reject) => {
-            //Getting the instagram User Id
-            this.fbApi.api(`/${pageId}?fields=instagram_business_account`, response => {
-                resolve(response.data[0].instagram_business_account.id)
+    getInstagramBusinessAccount = function(){
+        const that = this;
+
+        return function(pageId){
+            return new Promise((resolve, reject) => {
+                //Getting the instagram User Id
+                that.fbApi.api(`/${pageId}?fields=instagram_business_account`, response => {
+                    resolve(response.instagram_business_account.id)
+                });
             });
-        });
+        }
+    }
+
+    /** 
+     * @description Obtaining the instagram business Id
+    */
+    getInstagramMedia = function(){
+        const that = this;
+
+        return function(instagramBusinessAccountId){
+            return new Promise((resolve, reject) => {
+                //Getting the instagram User Id
+                that.fbApi.api(`/${instagramBusinessAccountId}?fields=media`, response => {
+                    resolve(response);
+                });
+            });
+        }
     }
 }
