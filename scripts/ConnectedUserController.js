@@ -15,12 +15,12 @@ class ConnectedUserController{
         //The user access token is obtained
         this.getUserAccessToken();
         
-        this.getUserAccounts().then(this.getInstagramBusinessAccount()).then(this.getInstagramMedia).then(function(data){
+        this.getUserAccounts().then(this.getInstagramBusinessAccount()).then(this.getInstagramMedia()).then(function(data){
             console.log("data");
             console.log(data);
         });
     }
-    
+
     /**
      * @description Obtaining the access token of the current connected user
      */
