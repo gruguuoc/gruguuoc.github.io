@@ -79,11 +79,11 @@ class ConnectedUserController{
         const that = this;
 
         return function(userPost){
-            that.userPosts = data.media.data; //Array
+            that.userPosts = userPost.media.data; //Array
             const dataPetitions = [];
             //Finds data about every found post.
             that.userPosts.forEach(element => {
-                dataPetitions.push(that.getPostInformationById(element));
+                dataPetitions.push(that.getPostInformationById(element, that));
             });
 
             Promise.all(dataPetitions).then(response => {
@@ -95,7 +95,7 @@ class ConnectedUserController{
     /**
      * @description Obtaining the current number of likes the post has
      */
-    getPostInformationById = function(post){
+    getPostInformationById = function(post, that){
         return new Promise((resolve, reject) => {
             //Getting the post number of likes
             that.fbApi.api(`/${post.id}?fields=like_count`, response => {
