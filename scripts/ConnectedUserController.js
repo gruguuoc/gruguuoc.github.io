@@ -91,6 +91,9 @@ class ConnectedUserController{
             Promise.all(dataPetitions).then(response => {
                 console.log(that.userPosts);
                 that.renderPostInformation(that.userPosts);
+            }).catch(err =>{
+                console.log("Error");
+                console.log(err);
             })
         }    
     }
