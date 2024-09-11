@@ -115,6 +115,11 @@ class ConnectedUserController{
      * @description prints post data
      */
     renderPostInformation = function(postList){
-
+        let cards = '<div>';
+        postList.forEach(element =>{
+            cards += `<div> ${element.likeCount} </div>`;
+        })
+        cards = '</div>';
+        document.getElementById("postList").innerHTML = cards;
     }
 }
