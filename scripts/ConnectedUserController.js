@@ -123,7 +123,7 @@ class ConnectedUserController{
         postList.forEach(element =>{
             cards += `<div> ${element.likeCount} </div>`;
         })
-        cards += cards + '</div>';
+        cards += '</div>';
         document.getElementById("postList").innerHTML = cards;
     }
 }
