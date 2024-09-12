@@ -119,11 +119,29 @@ class ConnectedUserController{
      * @description prints post data
      */
     renderPostInformation = function(postList){
-        let cards = '<div>';
+        let cards = '';
         postList.forEach(element =>{
-            cards += `<div> ${element.likeCount} </div>`;
+            cards += this.createPostCard(element.likeCount, element.timestamp, element.mediaUrl);
         })
-        cards += '</div>';
+
         document.getElementById("postList").innerHTML = cards;
+    }
+
+    /**
+     * 
+     * @param {*} likes 
+     * @param {*} timestamp 
+     * @param {*} imageUrl 
+     * @returns html element with the generate post card
+     * @description cretates the html with information about a post.
+     */
+    createPostCard = function(likes, timestamp, imageUrl){
+        return `<div class="card" style="width: 18rem;">
+                    <img src="${imageUrl}" class="card-img-top" alt="post image">
+                    <div class="card-body">
+                        <h5 class="card-title">${likes}</h5>
+                        <p class="card-text">${timestamp}</p>
+                    </div>
+                </div>`;
     }
 }
