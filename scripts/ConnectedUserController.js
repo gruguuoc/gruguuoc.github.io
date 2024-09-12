@@ -89,7 +89,7 @@ class ConnectedUserController{
 
             //Finds information about all post and then manages it
             Promise.all(dataPetitions).then(response => {
-                console.log(that.userPosts);
+                that.userPosts = response;
                 that.renderPostInformation(that.userPosts);
             }).catch(err =>{
                 console.log("Error");
@@ -105,7 +105,6 @@ class ConnectedUserController{
         return new Promise((resolve, reject) => {
             //Getting the post number of likes
             that.fbApi.api(`/${post.id}?fields=like_count,media_product_type,media_url,timestamp`, response => {
-                console.log(response);
                 post.likeCount = response.like_count;
                 post.mediaProductType = response.media_product_type;
                 post.mediaUrl = response.media_url;
@@ -124,7 +123,7 @@ class ConnectedUserController{
         postList.forEach(element =>{
             cards += `<div> ${element.likeCount} </div>`;
         })
-        cards = '</div>';
+        cards += cards + '</div>';
         document.getElementById("postList").innerHTML = cards;
     }
 }
