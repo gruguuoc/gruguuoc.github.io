@@ -108,7 +108,7 @@ class ConnectedUserController{
                 post.likeCount = response.like_count;
                 post.mediaProductType = response.media_product_type;
                 post.mediaUrl = response.media_url;
-                post.timestamp = new Date(Date.parse(response.timestamp) * 1000);
+                post.timestamp = new Date(Date.parse(response.timestamp));
 
                 resolve(post);
             });
@@ -139,8 +139,8 @@ class ConnectedUserController{
         return `<div class="card" style="width: 18rem;">
                     <img src="${imageUrl}" class="card-img-top" alt="post image">
                     <div class="card-body">
-                        <h5 class="card-title">${likes} likes</h5>
-                        <p class="card-text">${timestamp.getDay()}/${timestamp.getMonth()}/${timestamp.getFullYear()} ${timestamp.getHours()}:${timestamp.getMinutes()}</p>
+                        <h5 class="card-title">${likes} <i class="fa-solid fa-heart"></i></h5>
+                        <p class="card-text">${timestamp.toLocaleString()}</p>
                     </div>
                 </div>`;
     }
