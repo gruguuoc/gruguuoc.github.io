@@ -108,7 +108,7 @@ class ConnectedUserController{
                 post.likeCount = response.like_count;
                 post.mediaProductType = response.media_product_type;
                 post.mediaUrl = response.media_url;
-                post.timestamp = response.timestamp;
+                post.timestamp = Date.parse(response.timestamp);
 
                 resolve(post);
             });
