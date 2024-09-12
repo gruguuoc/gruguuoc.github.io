@@ -139,8 +139,8 @@ class ConnectedUserController{
         return `<div class="card" style="width: 18rem;">
                     <img src="${imageUrl}" class="card-img-top" alt="post image">
                     <div class="card-body">
-                        <h5 class="card-title">${likes}</h5>
-                        <p class="card-text">${timestamp}</p>
+                        <h5 class="card-title">${likes} likes</h5>
+                        <p class="card-text">${timestamp.getDay()}/${timestamp.getMonth()}/${timestamp.getFullYear()} ${timestamp.getHours()}:${timestamp.getMinutes()}</p>
                     </div>
                 </div>`;
     }
