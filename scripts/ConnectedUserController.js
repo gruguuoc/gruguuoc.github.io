@@ -110,6 +110,8 @@ class ConnectedUserController{
                 post.mediaProductType = response.media_product_type;
                 post.mediaUrl = response.media_url;
                 post.timestamp = response.timestamp;
+
+                resolve(post);
             });
         });
     }
