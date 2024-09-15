@@ -140,7 +140,7 @@ class ConnectedUserController{
                     <img src="${imageUrl}" class="card-img-top" alt="post image">
                     <div class="card-body text-center">
                         <h5 class="card-title">${likes} <i class="fa-solid fa-heart"></i></h5>
-                        <p class="card-text">${timestamp.toLocaleString([], {hour: '2-digit', minute:'2-digit'})}</p>
+                        <p class="card-text">${timestamp.toLocaleString([], {day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute:'2-digit'})}</p>
                     </div>
                 </div>`;
     }
