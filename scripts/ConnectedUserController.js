@@ -136,11 +136,11 @@ class ConnectedUserController{
      * @description cretates the html with information about a post.
      */
     createPostCard = function(likes, timestamp, imageUrl){
-        return `<div class="card" style="width: 18rem;">
+        return `<div class="card m-2" style="width: 10rem; height: 15rem">
                     <img src="${imageUrl}" class="card-img-top" alt="post image">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">${likes} <i class="fa-solid fa-heart"></i></h5>
-                        <p class="card-text">${timestamp.toLocaleString()}</p>
+                        <p class="card-text">${timestamp.toLocaleString([], {hour: '2-digit', minute:'2-digit'})}</p>
                     </div>
                 </div>`;
     }
