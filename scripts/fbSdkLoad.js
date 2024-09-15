@@ -14,7 +14,10 @@ window.fbAsyncInit = function() {
     
     //Getting current status of the user
     FB.getLoginStatus(function(response) {
-      console.log(response);
+      if(response.status === "connected")
+        {
+          const connectedUserController = new ConnectedUserController(FB, response);
+        }
     });      
 };
 
